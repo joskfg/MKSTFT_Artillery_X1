@@ -385,7 +385,7 @@ LABEL_MACHINE_SETTINGS,
   {ICON_GCODE,                LABEL_GCODE},
   {ICON_SHUT_DOWN,            LABEL_SHUT_DOWN},
   {ICON_PARAMETER,            LABEL_SETTING_PARAMETER},
-  {ICON_BACKGROUND,           LABEL_BACKGROUND},
+  {ICON_PID,                  LABEL_PID},
   {ICON_BACKGROUND,           LABEL_BACKGROUND},
   {ICON_BACK,                 LABEL_BACK},}
 };
@@ -419,6 +419,19 @@ void menuMachineSettings(void)
 
       case KEY_ICON_4:
         infoMenu.menu[++infoMenu.cur] = parametersetting;
+        break;
+
+      case KEY_ICON_5:
+        // Start Fun
+        storeCmd("M106 S255\n");
+        // Hotend
+        storeCmd("M303 E0 S200 C8 U1\n");
+        // Bed
+        storeCmd("M303 E-1 S60 C8 U1\n");
+        // Stop Fun
+        storeCmd("M107\n");
+        // Store settings
+        storeCmd("M500\n");
         break;
       
       case KEY_ICON_7:

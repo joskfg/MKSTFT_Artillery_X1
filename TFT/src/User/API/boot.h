@@ -93,6 +93,7 @@ enum
   ICON_POINT_2,
   ICON_POINT_3,
   ICON_POINT_4,
+  ICON_POINT_5,
   ICON_MARLIN,
   ICON_BIGTREE,
   ICON_GCODE,
@@ -144,7 +145,7 @@ enum
   ICON_LEDCOLOR,
 
 //add new icons above this line  only 
-//  ICON_RESERVE
+  ICON_PID,
 
 // Preview should be in the last place before ICON_BACKGROUND to save flash storage space
   ICON_PREVIEW,
