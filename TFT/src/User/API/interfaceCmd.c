@@ -175,6 +175,14 @@ void sendQueueCmd(void)
         case 27: //M27
           printSetUpdateWaiting(false);
         break;
+
+        case 73: //;73
+          // Avoid real M600 and start simulation. M114 does actually nothing relevant, other codes can be used.
+          if (isPrinting()) {
+            const char *m73 = "M114\n";
+            strcpy(infoCmd.queue[infoCmd.index_r].gcode, m73);
+          }
+          break;
         
         case 80: //M80
           #ifdef PS_ON_PIN
@@ -314,6 +322,10 @@ void sendQueueCmd(void)
           if (isPrinting()) {
             setPrintPause(true,false,true);
           }
+
+          // Avoid real M600 and start simulation. M114 does actually nothing relevant, other codes can be used.
+          const char *buf = "M114\n";
+          strcpy(infoCmd.queue[infoCmd.index_r].gcode, buf);
           break;
       }
       break;

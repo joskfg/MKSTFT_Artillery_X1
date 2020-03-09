@@ -237,7 +237,7 @@ bool setPrintPause(bool is_pause, bool is_m0pause, bool is_m600pause)
     case TFT_UDISK:
     case TFT_SD:
       infoPrinting.pause = is_pause;
-      if(infoPrinting.pause == true && is_m0pause == false && is_m600pause == false){
+      if(infoPrinting.pause == true){
         while (infoCmd.count != 0) {loopProcess();}
       }
 
@@ -258,7 +258,7 @@ bool setPrintPause(bool is_pause, bool is_m0pause, bool is_m600pause)
         if(is_m600pause == true) {
           setM600Pause(is_m600pause);
           popupReminder(textSelect(LABEL_PAUSE), textSelect(LABEL_M600_PAUSE));
-          break;
+
         }
         
         coordinateGetAll(&tmp);
@@ -283,10 +283,10 @@ bool setPrintPause(bool is_pause, bool is_m0pause, bool is_m600pause)
           Serial_Puts(SERIAL_PORT, "M108\n");
           break;
         }
+
         if(isM600_Pause() == true) {
           setM600Pause(is_m600pause);
-          Serial_Puts(SERIAL_PORT, "M108\n");
-          break;
+          infoMenu.menu[++infoMenu.cur] = menuExtrude;	
         }
 
         if (isCoorRelative == true)     mustStoreCmd("G90\n");
