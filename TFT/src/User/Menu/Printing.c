@@ -237,7 +237,7 @@ bool setPrintPause(bool is_pause, bool is_m0pause, bool is_m600pause)
     case TFT_UDISK:
     case TFT_SD:
       infoPrinting.pause = is_pause;
-      if(infoPrinting.pause == true){
+      if(infoPrinting.pause == true && is_m0pause == false){
         while (infoCmd.count != 0) {loopProcess();}
       }
 
